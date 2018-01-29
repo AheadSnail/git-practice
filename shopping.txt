@@ -1,0 +1,23 @@
+这里先介绍一下ActivityManagerService，这个ActivityManagerService类实现在frameworks/base/services/java/com/android/server/am/ActivityManagerService.java文件中，
+它是Binder进程间通信机制中的Server角色，它是随机启动的。随机启动的Server是在frameworks/base/services/java/com/android/server/SystemServer.java文件里面进行启动的，
+我们来看一下ActivityManagerService启动相关的代码：
+mActivityManagerService = mSystemServiceManager.startService(ActivityManagerService.Lifecycle.class).getService();
+而关于SystemServiceManager是怎么样找到对应的类，并得到这个对象的，可以自行查看，源码的路径为frameworks/base/services/java/com/android/server/SystemServerManager.java
+其实就是通过loadClasss()，然后newInstance得到对应的对象，并且会调用对应onStart()函数，之前已经分析过..所以会执行Lifecycle构造函数，并执行onStart函数，下面为Lifecycle声明
+public static final class Lifecycle extends SystemService {
+        private final ActivityManagerService mService;
+        public Lifecycle(Context context) {
+            super(context);
+            mService = new ActivityManagerService(context);
+        }
+        @Override
+        public void onStart() {
+            mService.start();
+        }
+        public ActivityManagerService getService() {
+            return mService;
+        }
+}
+通过上面构造得到ActivityManagerService对象之后，通过调用下面的方法，将当前的service，交给ServiceManager,至于为什么要交给ServcieManager管理，这里就要去了解IPC的通信机制了
+// Set up the Application instance for the system process and get started.
+mActivityManagerService.setSystemProcess();
