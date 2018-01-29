@@ -23,3 +23,5 @@ public static final class Lifecycle extends SystemService {
 mActivityManagerService.setSystemProcess();
 
 测试代码
+
+测试士大夫士大夫
