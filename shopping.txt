@@ -40,3 +40,4 @@ mActivityManagerService.setSystemProcess();
 
 
 test add one
+test add two
