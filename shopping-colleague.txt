@@ -5,9 +5,8 @@ mActivityManagerService.setSystemProcess();
 
 士大夫士大夫似的
 
-<<<<<<< HEAD
+
 水电费是否是否是的冯绍峰的是否水电费水电费水电费双丰收了的国家队开发了几个梵蒂冈
-=======
 水电费是否是否是的冯绍峰的
 是否是否水电费水电费水电费舒服舒服舒服的
->>>>>>> 78b88e0... feature1 again modify shopping-colleague.txt
+
